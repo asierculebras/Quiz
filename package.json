@@ -7,7 +7,7 @@
   },
   "engines": {
     "node": "4.2.x",
-    "npm": "22.14.x"
+    "npm": "2.14.x"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -20,8 +20,7 @@
     "pg": "^4.4.6",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.19.3",
-    "serve-favicon": "~2.3.0",
-    "sqlite3": "^3.1.1"
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "sqlite3": "^3.1.1"
