@@ -4,13 +4,19 @@
         <td>
            <a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].question %></a>
         </td>
+        <td>
+        <a href="/quizzes/<%= quizzes[i].id %>/edit"><button> Editar </button></a>
+        </td>
      </tr> 
   <% } %>
+  <p></p>
+   <p></p>
+
 </table>
  
    <form method="get" action="/quizzes" > 
-    <p>¿Qué palabra quieres buscar?</p>
-    <input type="text" name="search">
+    <p>Buscardor</p>
+    <input type="text" name="search" placeholder="Escribe aquí la palabra">
     <input type="submit" value="Enviar" ></div><div> 
 </form>
 <p></p>
