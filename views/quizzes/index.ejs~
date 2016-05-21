@@ -1,0 +1,16 @@
+<table>
+  <% for (var i in quizzes) { %>        
+     <tr>
+        <td>
+           <a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].question %></a>
+        </td>
+     </tr> 
+  <% } %>
+</table>
+
+ 
+   <form method="get" action="/quizzes" > 
+    <p>¿Qué palabra quieres buscar?</p>
+    <input type="text" name="search" value ="<%= search%>">
+    <input type="submit" value="Enviar" ></div><div> 
+</form>
