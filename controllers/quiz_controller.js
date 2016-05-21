@@ -1,4 +1,5 @@
 var models = require('../models');
+var Sequelize = require('sequelize');
 
 //GET / quizzes/new
 exports.new = function(req, res,next){
@@ -17,7 +18,16 @@ exports.create = function(req, res, next) {
   		req.flash('success', 'Quiz creado con exito');
     	res.redirect('/quizzes');  // res.redirect: Redirección HTTP a lista de preguntas
     })
-    .catch(function(error) {
+    .catch(Sequelize.ValidationError, function(error) {
+
+      req.flash('error', 'Errores en el formulario:');
+      for (var i in error.errors) {
+          req.flash('error', error.errors[i].value);
+      };
+
+      res.render('quizzes/new', {quiz: quiz});
+    })
+     .catch(function(error) {
     	  req.flash('error', 'Error al crear Quiz' +error.message);
 		next(error);
 	});  
