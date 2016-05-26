@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 
 app.use(function(req, res, next) {
   if(req.session.user) {
-    var timeout = 12000;
+    var timeout = 300000; // 5 minutos
     if((+(new Date()) - req.session.user.inicio) >= timeout ) {
       delete req.session.user;
       next();
