@@ -18,23 +18,30 @@
 <body>
   <div id="page">
     <header class="main">
+
+        <div class="right">
+          <% if (!session.user) { %>
+              <a href="/users/new">Registrarse</a> 
+              <a href="/session">Login</a>
+          <% } else { %>
+              <%= session.user.username %> 
+              <a href="/users/<%= session.user.id %>">Perfil</a>
+              <a href="/session?_method=DELETE">Logout</a>
+          <% } %>
+        </div>
+
       <h2>Quiz<span class="no-narrow">: el juego de las preguntas</span></h2>
     </header>
 
       <nav class="main" role="navigation">
         <a href="/">Inicio</a>
         <a href="/quizzes">Preguntas</a>
+        <a href="/users">Usuarios</a>
         <a href="/autor">Autor</a>
+
       </nav>
 
-  <!--    <section class="main">
-      <div>
-          <%- body %>
-        </div>
-      </section>
-   -->   
-   
-       <section class="main">
+       <section>
             <% if (messages.info) { %>
                <article id='flashinfo'>
                  <h3>Información de interés:</h3>
@@ -79,8 +86,6 @@
       <a href="http://es.wikipedia.org/wiki/Quiz">
         ¿Que es un Quiz?</a>
     </footer>
-     <footer class="github"> <a href="https://github.com/asierculebras/Quiz">Repositorio GitHub asierculebras/Quiz </a>
-      </footer>
   </div>
 </body> 
 </html>

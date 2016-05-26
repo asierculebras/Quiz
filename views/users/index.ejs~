@@ -1,4 +1,4 @@
-<h2> Usuarios </h2>
+<h2> Usuarios: </h2>
 
 <table>
   <% for (var i in users) { %>
@@ -20,4 +20,4 @@
   <%  }; %>
 </table>
 
-<a href="/users/new"><button type="button">Crear usuario</button></a>
+<a href="/users/new"><button type="button">Crear nuevo usuario</button></a>
