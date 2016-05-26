@@ -11,12 +11,14 @@
      </p>
   </form>
 </p>
+
 <p> </p>
 <a href="/quizzes"><strong><button> Me rindo</button></strong></a>
  <br/>
 
-
+ <% if (session.user) { %>
 <p> <a href="/quizzes/<%= quiz.id %>/comments/new"><button> Añande un comentario</button></a></p>
+ <% } %>
 
 <p><strong>Comentarios: </strong></p>
 <ul>
