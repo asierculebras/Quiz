@@ -3,6 +3,12 @@
   <form method="get" action="/quizzes/<%= quiz.id %>/check">        
     <p>
       Pregunta: <%= quiz.question %>
+      
+    <% if(quiz.Attachment) { %>
+      <img src="<%= quiz.Attachment.url %>" width="50px"/>
+    <% } else { %>
+      <img src="/images/question.png" width="50px"/>
+    <% } %>
     </p>
 
     <p>
@@ -21,17 +27,25 @@
  <% } %>
 
 <p><strong>Comentarios: </strong></p>
-
-
-
 <ul>
+
   <% for (var i in quiz.Comments) { 
        var comment = quiz.Comments[i];
        if (comment.accepted) { %>
-           <li> <%= comment.text %> </li>
+           <li> <%= comment.text %> 
+                  <% for(var u in users) { 
+                       if(users[u].id === comment.AuthorId) { %>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Autor del comentario: <strong><%= users[u].username %></strong>
+                     <% }
+               } %>
+             </li>
        <% } else if (session.user && 
-                     (session.user.isAdmin || (quiz.AuthorId === session.user.id))) { %>
+                     (session.user.isAdmin || (quiz.AuthorId === session.user.id))) { %>                     
            <li> <%= comment.text %> </li>
+
+           <% if (comment.AuthorId) { %>
+             Creado por:  <%= comment.Author.username %>
+           <% } %>
            <a href="/quizzes/<%= quiz.id %>/comments/<%= comment.id %>/accept?_method=PUT">
               <button>Aceptar</button>
            </a>

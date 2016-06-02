@@ -32,7 +32,8 @@ var Comment = sequelize.import(path.join(__dirname,'comment'));
 
 // Importar la definicion de la tabla de  Users ( usuarios) de user.js
 var User = sequelize.import(path.join(__dirname,'user'));
-
+//
+var Attachment = sequelize.import(path.join(__dirname,'attachment'));
 
 // Relaciones entre modelos
 Comment.belongsTo(Quiz);
@@ -42,32 +43,16 @@ Quiz.hasMany(Comment);
 // Relaccion 1 a N entre User y Quiz
 User.hasMany(Quiz, {foreignKey: 'AuthorId'});
 Quiz.belongsTo(User, {as: 'Author', foreignKey: 'AuthorId'});
-/* Cambiamos a migracines y Seeders
 
-// sequelize.sync() crea e inicializa tabla de preguntas en DB
+Attachment.belongsTo(Quiz);
+ Quiz.hasOne(Attachment);
 
-sequelize.sync()
-    .then(function() {
-        // Ya se han creado las tablas necesarias.
-        return Quiz.count()
-                .then(function (c) {
-                    if (c === 0) {   // la tabla se inicializa solo si está vacía
-                        return Quiz.bulkCreate([ {question: 'Capital de Italia',   answer: 'Roma'},
-                                                 {question: 'Capital de Portugal', answer: 'Lisboa'},
-                                                 {question: 'Capital de España', answer: 'Madrid'},
-                                                 {question: 'Capital de Argentina', answer: 'Buenos Aires'}
-                                              ])
-                                   .then(function() {
-                                        console.log('Base de datos inicializada con datos');
-                                    });
-                    }
-                });
-    })
-    .catch(function(error) {
-        console.log("Error Sincronizando las tablas de la BBDD:", error);
-        process.exit(1);
-    });
-*/
+ //Relaccion de 1 a N entre user y coments
+  User.hasMany(Comment,{foreignKey: 'AuthorId'});
+ Comment.belongsTo(User,{as: 'Author', foreignKey: 'AuthorId'});
+  
+
+exports.Attachment = Attachment;
 
 exports.Quiz = Quiz; // exportar definición de tabla Quiz
 exports.Comment = Comment; // exportar definición de tabla de los comentarios.
